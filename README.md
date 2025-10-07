@@ -36,7 +36,7 @@
 Был написан код для вывода ответов и ошибок
 <img width="530" height="485" alt="image" src="https://github.com/user-attachments/assets/898d4f67-da70-4542-84dc-10bb8a3a7762" />
 
-6.  Обработчики: GET /tasks и POST /tasks
+5.  Обработчики: GET /tasks и POST /tasks
 
 Были написан два обработчик GET /tasks и POST /tasks
 
