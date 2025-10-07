@@ -55,12 +55,10 @@ func (h *Handlers) CreateTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	req.Title = strings.TrimSpace(req.Title)
-	runes := []rune(req.Title)
-	if req.Title == "" {
-		BadRequest(w, "title is required")
-		return
-	} else if len(runes) >= 140 {
-		BadRequest(w, "title is required")
+	if len(req.Title) < 3 || len(req.Title) > 140 {
+		JSON(w, http.StatusUnprocessableEntity, ErrorResponse{
+			Error: "Ошибка длина должна быть от 3 до 140 символов",
+		})
 		return
 	}
 
@@ -130,7 +128,6 @@ func (h *Handlers) PatchTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handlers) DELETETask(w http.ResponseWriter, r *http.Request) {
-	// Ожидаем путь вида /tasks/123
 	parts := strings.Split(strings.Trim(r.URL.Path, "/"), "/")
 	if len(parts) != 2 {
 		NotFound(w, "invalid path")
